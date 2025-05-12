@@ -15,3 +15,4 @@ export function getImagesByQuery(query) {
         .then(res => res.data)
         .catch(error => error);
     }
+    
