@@ -12,23 +12,23 @@ form.addEventListener('submit', function (event) {
 
     if (query === '') {
         iziToast.error({
-          title: 'Error',
-          message: 'Please enter a search query.',
-          position: 'topRight',
+            title: 'Error',
+            message: 'Please enter a search query.',
+            position: 'topRight',
         });
         return;
     }
-    
+
     showLoader();
     clearGallery();
 
     getImagesByQuery(query)
     .then(res => {
-      if (res.hits.length === 0) {
-        iziToast.error({
-            title: 'No images',
-            message: 'Sorry, there are no images matching your search query. Please try again!',
-        });
+        if (res.hits.length === 0) {
+            iziToast.error({
+                title: 'No images',
+                message: 'Sorry, there are no images matching your search query. Please try again!',
+            });
         } else {
             createGallery(res.hits);
         }
@@ -39,8 +39,8 @@ form.addEventListener('submit', function (event) {
             title: 'Error',
             message: 'An error occurred while fetching images. Please try again later.',
         });
-      })
-      .finally(() => {
+    })
+    .finally(() => {
         hideLoader();
-      });
-  });
+    });
+});
