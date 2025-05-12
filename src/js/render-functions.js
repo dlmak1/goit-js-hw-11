@@ -1,0 +1,53 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+const galleryContainer = document.querySelector('.js-gallery');
+const lightbox = new SimpleLightbox('.gallery a');
+
+export function createGallery(images) {
+  const galleryMarkup = images.map(image => {
+    return `
+      <li class="image-item">
+  <div>
+    <a href="${largeImageURL}" class="image-link">
+      <img src="${webformatURL}" alt="${tags}" class="image-thumbnail">
+    </a>
+  </div>
+  <div>
+    <ul class="info-box">
+      <li class="info-item">
+        <p class="info-title">Likes</p>
+        <p class="info-label" data-likes>${likes}</p>
+      </li>
+      <li class="info-item">
+        <p class="info-title">Views</p>
+        <p class="info-label" data-views>${views}</p>
+      </li>
+      <li class="info-item">
+        <p class="info-title">Comments</p>
+        <p class="info-label" data-comments>${comments}</p>
+      </li>
+      <li class="info-item">
+        <p class="info-title">Downloads</p>
+        <p class="info-label" data-downloads>${downloads}</p>
+      </li>
+    </ul>
+  </div>
+</li>`;
+  }).join('');
+
+  galleryContainer.innerHTML = galleryMarkup;
+  lightbox.refresh();
+}
+
+export function clearGallery() {
+  galleryContainer.innerHTML = '';
+}
+
+export function showLoader() {
+  document.querySelector('.js-loader').classList.remove('hidden');
+}
+
+export function hideLoader() {
+  document.querySelector('.js-loader').classList.add('hidden');
+}
